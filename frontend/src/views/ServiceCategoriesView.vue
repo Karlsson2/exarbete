@@ -58,7 +58,7 @@
   </div>
 </template>
 <script>
-import axios from "axios";
+import axiosInstance from "@/services/axiosConfig";
 import Swal from "sweetalert2";
 
 export default {
@@ -92,9 +92,7 @@ export default {
     async fetchCategories() {
       this.isLoading = true;
       try {
-        const response = await axios.get(
-          `${this.API_BASE_URL}/services-categories`
-        );
+        const response = await axiosInstance.get(`/services-categories`);
         this.categories = response.data.map((category) => ({
           ...category,
         }));
@@ -118,7 +116,7 @@ export default {
     async fetchServices() {
       this.isLoading = true;
       try {
-        const response = await axios.get(`${this.API_BASE_URL}/services`);
+        const response = await axiosInstance.get(`/services`);
         this.services = response.data.map((service) => ({
           ...service,
           price: Number(service.price), // Ensure 'price' is a number
@@ -144,15 +142,9 @@ export default {
     async addCategory() {
       try {
         this.isLoading = true;
-        const response = await axios.post(
-          `${this.API_BASE_URL}/services-categories`,
-          { category_name: this.form.name },
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
+        const response = await axiosInstance.post(`/services-categories`, {
+          category_name: this.form.name,
+        });
 
         const addedCategory = { ...response.data };
         this.categories.push(addedCategory);
@@ -193,15 +185,10 @@ export default {
         this.isLoading = true;
 
         // Send the data as JSON
-        const response = await axios.put(
-          `${this.API_BASE_URL}/services-categories/${this.form.category_id}`,
+        const response = await axiosInstance.put(
+          `/services-categories/${this.form.category_id}`,
           {
             category_name: this.form.name,
-          },
-          {
-            headers: {
-              "Content-Type": "application/json", // Set JSON content type
-            },
           }
         );
 
@@ -259,9 +246,7 @@ export default {
 
       try {
         this.isLoading = true;
-        await axios.delete(
-          `${this.API_BASE_URL}/services-categories/${category_id}`
-        );
+        await axiosInstance.delete(`/services-categories/${category_id}`);
         this.categories = this.categories.filter(
           (category) => category.category_id !== category_id
         );
