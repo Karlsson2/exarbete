@@ -4,6 +4,10 @@
       ><font-awesome-icon icon="chevron-left" /> Tillbaka</router-link
     >
     <h1>Kund Recensioner</h1>
+    <p>
+      Endast 3 reviews visas på sidan, så ta bort/lägg till nedan så att du
+      endast har 3 st.
+    </p>
 
     <!-- Loading Indicator -->
     <div v-if="isLoading" class="loading-overlay">

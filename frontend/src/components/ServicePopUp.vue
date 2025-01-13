@@ -2,7 +2,7 @@
   <div v-if="isVisible" class="popup-overlay">
     <div class="popup">
       <h2>{{ service.name }}</h2>
-      <p><strong>Description:</strong> {{ service.description }}</p>
+      <p><strong>Beskrivning:</strong> {{ service.description }}</p>
       <div class="images">
         <div v-if="service.before_image_url" class="before">
           <img

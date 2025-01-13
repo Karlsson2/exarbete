@@ -91,7 +91,7 @@ export default {
   },
   methods: {
     /**
-     * Fetch all categories from the backend.
+     * Fetch all brands from the backend.
      */
     async fetchBrands() {
       this.isLoading = true;
@@ -105,11 +105,7 @@ export default {
           "Error fetching categories:",
           error.response || error.message
         );
-        Swal.fire(
-          "Error",
-          "Failed to fetch categories. Please try again later.",
-          "error"
-        );
+        Swal.fire("Error", "Kunde inte hämta märken. Försök igen!.", "error");
       } finally {
         this.isLoading = false;
       }
@@ -206,13 +202,13 @@ export default {
     async deleteBrand(brand_id) {
       const result = await Swal.fire({
         title: "Are you sure?",
-        html: "Vill du verkligen ta bort den här kategorien? Detta kan inte ångras!",
+        html: "Vill du verkligen ta bort det här märket? Detta kan inte ångras!",
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, delete it!",
-        cancelButtonText: "Cancel",
+        confirmButtonText: "Ja, ta bort det!",
+        cancelButtonText: "Avbryt",
       });
 
       // Check if the user confirmed the action
@@ -224,7 +220,7 @@ export default {
         this.brands = this.brands.filter(
           (brand) => brand.brand_id !== brand_id
         );
-        Swal.fire("Borttagen!", "Kategori borttagen!", "success");
+        Swal.fire("Borttagen!", "Märke borttaget!", "success");
       } catch (error) {
         console.error(
           "Error deleting category:",
@@ -232,7 +228,7 @@ export default {
         );
         Swal.fire(
           "Error",
-          "Kategori kunde inte tas bort. Snälla försök igen senare.",
+          "Märke kunde inte tas bort. Snälla försök igen senare.",
           "error"
         );
       } finally {

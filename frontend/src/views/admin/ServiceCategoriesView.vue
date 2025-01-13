@@ -106,11 +106,7 @@ export default {
           "Error fetching categories:",
           error.response || error.message
         );
-        Swal.fire(
-          "Error",
-          "Failed to fetch categories. Please try again later.",
-          "error"
-        );
+        Swal.fire("Error", "kunde inte hämta kategorier. försök igen", "error");
       } finally {
         this.isLoading = false;
       }
@@ -133,7 +129,7 @@ export default {
         );
         Swal.fire(
           "Fel",
-          "Fel vid hämtning av behandlingar: Misslyckades med att hämta behandlingar. Försök igen senare",
+          "Fel vid hämtning av kategorier. Försök igen senare",
           "error"
         );
       } finally {
@@ -154,7 +150,7 @@ export default {
         const addedCategory = { ...response.data };
         this.categories.push(addedCategory);
         this.resetForm();
-        Swal.fire("Success", "Category added successfully!", "success");
+        Swal.fire("Success", "Kategori tillagd!", "success");
       } catch (error) {
         console.error(
           "Error adding category:",
@@ -168,7 +164,7 @@ export default {
         // Display all error messages in the alert
         Swal.fire(
           "Error",
-          `Event kunde inte läggas till. Kolla vad du har skrivit in och försök igen! <br> ${errorMessages}`,
+          `Kategori kunde inte läggas till. Kolla vad du har skrivit in och försök igen! <br> ${errorMessages}`,
           "error"
         );
       } finally {
@@ -215,7 +211,7 @@ export default {
 
         this.resetForm();
         this.isEditing = false;
-        Swal.fire("Success", "Category updated successfully!", "success");
+        Swal.fire("Success", "Kategori uppdaterad!", "success");
       } catch (error) {
         console.error(
           "Error updating category:",
@@ -229,7 +225,7 @@ export default {
         // Display all error messages in the alert
         Swal.fire(
           "Error",
-          `Event kunde inte läggas till. Kolla vad du har skrivit in och försök igen! <br> ${errorMessages}`,
+          `Kategori kunde inte läggas till. Kolla vad du har skrivit in och försök igen! <br> ${errorMessages}`,
           "error"
         );
       } finally {

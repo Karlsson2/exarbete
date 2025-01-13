@@ -134,7 +134,6 @@ const YOUR_DOMAIN = process.env.FRONTEND_URL; //
 app.post(
   "/webhook",
   express.raw({ type: "application/json" }),
-
   async (req, res) => {
     let event;
     try {

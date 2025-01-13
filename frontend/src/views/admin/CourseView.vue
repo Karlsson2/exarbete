@@ -218,11 +218,7 @@ export default {
           "Error fetching courses:",
           error.response || error.message
         );
-        Swal.fire(
-          "Error",
-          "Failed to fetch courses. Please try again later.",
-          "error"
-        );
+        Swal.fire("Error", "Kunde inte hämta kurser. Försök igen.", "error");
       } finally {
         this.isLoading = false;
       }
@@ -237,7 +233,11 @@ export default {
 
       // Validate image type
       if (!file.type.startsWith("image/")) {
-        Swal.fire("Error", "Please upload a valid image file.", "error");
+        Swal.fire(
+          "Error",
+          "Ladda upp en godkänd bildfil, .jpg, .png.",
+          "error"
+        );
         this.selectedImage = null;
         this.imagePreview = null;
         return;
@@ -259,7 +259,7 @@ export default {
     async addCourse() {
       // Validate that an image has been selected
       if (!this.selectedImage) {
-        Swal.fire("Error", "Please select an image to upload.", "error");
+        Swal.fire("Error", "Välj en bild att ladda upp.", "error");
         return;
       }
 
@@ -289,7 +289,7 @@ export default {
         };
         this.courses.push(addedCourse);
         this.resetForm();
-        Swal.fire("Success", "Course added successfully!", "success");
+        Swal.fire("Success", "Kurs tillagd!", "success");
       } catch (error) {
         console.error("Error adding course:", error.response || error.message);
         // Get all error messages from the response
@@ -300,7 +300,7 @@ export default {
         // Display all error messages in the alert
         Swal.fire(
           "Error",
-          `Event kunde inte läggas till. Kolla vad du har skrivit in och försök igen! <br> ${errorMessages}`,
+          `Kursen kunde inte läggas till. Kolla vad du har skrivit in och försök igen! <br> ${errorMessages}`,
           "error"
         );
       } finally {
@@ -375,7 +375,7 @@ export default {
 
         this.resetForm();
         this.isEditing = false;
-        Swal.fire("Success", "Course updated successfully!", "success");
+        Swal.fire("Success", "Kurs uppdaterad", "success");
       } catch (error) {
         console.error(
           "Error updating course:",
@@ -390,7 +390,7 @@ export default {
         // Display all error messages in the alert
         Swal.fire(
           "Error",
-          `Event kunde inte läggas till. Kolla vad du har skrivit in och försök igen! <br> ${errorMessages}`,
+          `Kursen kunde inte läggas till. Kolla vad du har skrivit in och försök igen! <br> ${errorMessages}`,
           "error"
         );
       } finally {
@@ -420,17 +420,13 @@ export default {
         this.courses = this.courses.filter(
           (course) => course.course_id !== course_id
         );
-        Swal.fire("Deleted!", "Course deleted successfully!", "success");
+        Swal.fire("Deleted!", "Kurs borttagen!", "success");
       } catch (error) {
         console.error(
           "Error deleting course:",
           error.response || error.message
         );
-        Swal.fire(
-          "Error",
-          "Failed to delete course. Please try again later.",
-          "error"
-        );
+        Swal.fire("Error", "Kunde inte ta bort kurs, försök igen.", "error");
       } finally {
         this.isLoading = false;
       }
